@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Players</h2>
+<ul>
+  {% for p in players %}
+    <li>
+      {{ p.Name }} ({{ p.team.TeamName }}, {{ p.position.PositionName }})
+      <a href="{{ url_for('edit_player', player_id=p.PlayerID) }}">Edit</a>
+      <form action="{{ url_for('delete_player', player_id=p.PlayerID) }}" method="POST" style="display:inline;">
+        <button type="submit" onclick="return confirm('Are you sure you want to delete {{ p.Name }}?')">Delete</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>All Teams</h2>
+<ul>
+  {% for team in teams %}
+    <li>{{ team.TeamName }} ({{ team.players|length }} players)</li>
+  {% endfor %}
+</ul>
+{% endblock %}

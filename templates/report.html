@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Player Report</h2>
+
+<form method="POST">
+    <label>Team:</label>
+    <select name="team">
+        <option value="all">All</option>
+        {% for team in teams %}
+            <option value="{{ team.TeamID }}">{{ team.TeamName }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Position:</label>
+    <select name="position">
+        <option value="all">All</option>
+        {% for pos in positions %}
+            <option value="{{ pos.PositionID }}">{{ pos.PositionName }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="submit" value="Generate Report">
+    <input type="reset" value="Clear Filters">
+</form>
+
+{% if players is not none %}
+    <h3>Results:</h3>
+
+    {% if players %}
+        <ul>
+            {% for p in players %}
+                <li>{{ p.Name }} | Age: {{ p.Age }} | Height: {{ p.Height }}</li>
+            {% endfor %}
+        </ul>
+
+        <h4>Statistics</h4>
+        <ul>
+            <li>Total Players: {{ stats.total }}</li>
+            <li>Average Age: {{ stats.avg_age }}</li>
+            <li>Average Height: {{ stats.avg_height }}</li>
+        </ul>
+    {% else %}
+        <p>No players match your criteria.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

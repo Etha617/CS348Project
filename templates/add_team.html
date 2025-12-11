@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Team</h2>
+<<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.team_name.label }} {{ form.team_name() }}<br>
+    {{ form.submit() }}
+    <input type="reset" value="Clear">
+</form>
+
+{% endblock %}

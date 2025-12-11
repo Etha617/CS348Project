@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Team Roster Manager</title>
+</head>
+<body>
+    <h1>Team Roster Manager</h1>
+    <nav>
+    <a href="{{ url_for('index') }}">Home</a> |
+    <a href="{{ url_for('add_player') }}">Add Player</a> |
+    <a href="{{ url_for('add_team') }}">Add Team</a> |
+    <a href="{{ url_for('report') }}">Report</a> |
+    <a href="{{ url_for('remove_teams') }}">Remove Teams</a>
+
+
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

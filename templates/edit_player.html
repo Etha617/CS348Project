@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Player</h2>
+
+<form method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" value="{{ player.Name }}" required><br><br>
+
+    <label>Age:</label>
+    <input type="number" name="age" value="{{ player.Age }}" required><br><br>
+
+    <label>Height (inches):</label>
+    <input type="number" step="0.1" name="height" value="{{ player.Height }}" required><br><br>
+
+    <label>Team:</label>
+    <select name="team">
+        {% for team in teams %}
+            <option value="{{ team.TeamID }}" {% if team.TeamID == player.TeamID %}selected{% endif %}>
+                {{ team.TeamName }}
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Position:</label>
+    <select name="position">
+        {% for pos in positions %}
+            <option value="{{ pos.PositionID }}" {% if pos.PositionID == player.PositionID %}selected{% endif %}>
+                {{ pos.PositionName }}
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Save Changes">
+</form>
+{% endblock %}
